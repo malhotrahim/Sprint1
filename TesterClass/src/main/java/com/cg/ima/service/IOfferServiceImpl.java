@@ -63,8 +63,7 @@ public class IOfferServiceImpl implements IOfferService {
 	public List<Offer> getAllOffers() {
 		List<Offer> offerList = edao.findAll();
 		return offerList;
-//		edao.deleteAll();
-//		return null;
+
 
 	}
 

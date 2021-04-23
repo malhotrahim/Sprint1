@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -40,22 +42,22 @@ public class OfferController {
 	
 	@ResponseStatus(code = HttpStatus.CREATED)
 	 @PostMapping("/add")
-	public ResponseEntity<Offer> addOffer() {
-		User user= new User("himanshu", "123456");
-		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
-		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
-		Proposal p = new Proposal("proposal", 2000, LocalDate.now(), false, null, res);
-			List<Proposal> prop = new ArrayList<>();
-			prop.add(p);
-			
-			Offer off = new Offer( true, LocalDate.now(), prop);
+	public ResponseEntity<Offer> addOffer(@RequestBody Offer off) {
+//		User user= new User("himanshu", "123456");
+//		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+//		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+//		Proposal p = new Proposal("proposal", 2000, LocalDate.now(), false, null, res);
+//			List<Proposal> prop = new ArrayList<>();
+//			prop.add(p);
+//			
+//			Offer off = new Offer( true, LocalDate.now(), prop);
 			System.out.println("req data = " +off);
 		Offer offer =oServive.addOffer(off);
 		System.out.println("req data = " +offer);
 		
-		return new ResponseEntity<Offer>(off, HttpStatus.OK);
+		return new ResponseEntity<Offer>(offer, HttpStatus.OK);
 	}
-	 @GetMapping("/delete/{id}")
+	 @DeleteMapping("/delete/{id}")
 	 public ResponseEntity<Offer> removeOffer (@PathVariable("id") Integer id)  {
 		Offer off;
 		try {
@@ -84,7 +86,7 @@ public class OfferController {
 	 		Offer offer = oServive.getOffer(offerId);
 	 		return new ResponseEntity<Offer>(offer, HttpStatus.OK);
 	 	}
-	 	@PostMapping("/edit/{id}")
+	 	@PutMapping("/edit/{id}")
 	 	public ResponseEntity<Offer> editOffer(@PathVariable("id")int id, @RequestBody boolean bool) throws InvalidOfferException {
 	 		Offer offer = oServive.getOffer(id);
 	 		offer.setIsAvailable(bool);

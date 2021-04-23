@@ -33,6 +33,7 @@ public class Proposal {
 	@ManyToOne(cascade = CascadeType.ALL)	
 	@JoinColumn(name = "empid")
 	@NotNull
+	
 	private Employee emp;
 	
 	
@@ -73,10 +74,10 @@ public class Proposal {
 		this.acceptedOn = acceptedOn;
 	}
 	public Employee getEmp() {
-		return emp;
+		return this.resource.getEmp();
 	}
-	public void setEmp(Employee emp) {
-		this.emp = emp;
+	public void setEmp(Resource res) {
+		this.emp = this.resource.getEmp();
 	}
 	public Resource getResource() {
 		return resource;
@@ -85,7 +86,7 @@ public class Proposal {
 		this.resource = resource;
 	}
 	
-	public Proposal(String proposal, double amount, LocalDate proposalDate, boolean isAccepted, LocalDate acceptedOn, @NotNull Resource resource) {
+	public Proposal(String proposal, double amount, LocalDate proposalDate, boolean isAccepted, LocalDate acceptedOn, @NotNull Resource resource ) {
 		super();
 		this.proposal = proposal;
 		this.amount = amount;
@@ -94,7 +95,7 @@ public class Proposal {
 		this.acceptedOn = acceptedOn;
 		
 		this.resource = resource;
-		this.emp = resource.getEmp();
+		this.emp = this.resource.getEmp();
 	}
 	@Override
 	public String toString() {

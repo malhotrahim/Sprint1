@@ -35,43 +35,63 @@ class IOfferServiceTest {
 	private EntityManager em;
 	@Test
 	void testAddOffer() {
-//		User user= new User("himanshu", "123456");
-//		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
-//		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
-//		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
-//			List<Proposal> prop = new ArrayList<>();
-//			prop.add(p);
-//			
-//			Offer off = new Offer( true, LocalDate.now(), prop);
-//			Offer offer = oService.addOffer(off);
-//			Assertions.assertEquals(offer.getOfferId(), off.getOfferId());
+		User user= new User("himanshu", "123456");
+		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+			List<Proposal> prop = new ArrayList<>();
+			prop.add(p);
+			
+			Offer off = new Offer( true, LocalDate.now(), prop);
+			Offer offer = oService.addOffer(off);
+			Assertions.assertEquals(offer.getOfferId(), off.getOfferId());
 	}
 
-//	@Test
-//	void testEditOffer() {
-//		
-//	}
+	@Test
+	void testEditOffer() {
+		User user= new User("himanshu", "123456");
+		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+			List<Proposal> prop = new ArrayList<>();
+			prop.add(p);
+			
+			Offer off = new Offer( true, LocalDate.now(), prop);
+			em.persist(off);
+			Offer editOff = oService.editOffer(off);
+	}
 
 	@Test
 	void testGetOffer() throws InvalidOfferException {
-//		User user= new User("himanshu", "123456");
-//		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
-//		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
-//		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
-//			List<Proposal> prop = new ArrayList<>();
-//			prop.add(p);
-//			
-//			Offer off = new Offer( true, LocalDate.now(), prop);
-//			em.persist(off);
-//			int offerId=off.getOfferId();
-//			Offer offFound = oService.getOffer(offerId);
-//			Assertions.assertEquals(offFound.getOfferId(), off.getOfferId());
+		User user= new User("himanshu", "123456");
+		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+			List<Proposal> prop = new ArrayList<>();
+			prop.add(p);
+			
+			Offer off = new Offer( true, LocalDate.now(), prop);
+			em.persist(off);
+			int offerId=off.getOfferId();
+			Offer offFound = oService.getOffer(offerId);
+			Assertions.assertEquals(offFound.getOfferId(), off.getOfferId());
 	}
 
-//	@Test
-//	void testRemoveOffer() {
-//		
-//	}
+	@Test
+	void testRemoveOffer() {
+		User user= new User("himanshu", "123456");
+		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+			List<Proposal> prop = new ArrayList<>();
+			prop.add(p);
+			
+			Offer off = new Offer( true, LocalDate.now(), prop);
+			em.persist(off);
+			Offer offer = oService.removeOffer(off.getOfferId());
+			Assertions.assertEquals(offer.getOfferId(), off.getOfferId());
+		
+	}
 //
 //	@Test
 //	void testGetAllOffers() {

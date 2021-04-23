@@ -46,7 +46,7 @@ public class Resource {
 	@Override
 	public String toString() {
 		return "Resource [resId=" + resId + ", title=" + title + ", description=" + description + ", category="
-				+ category + ", date=" + date + ", type=" + type + ", price=" + price +  "]";
+				+ category + ", date=" + date + ", type=" + type + ", price=" + price + "Emp="+emp+ "]";
 	}
 	public Resource() {
 		super();
