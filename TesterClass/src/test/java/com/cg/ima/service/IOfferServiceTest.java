@@ -92,15 +92,46 @@ class IOfferServiceTest {
 			Assertions.assertEquals(offer.getOfferId(), off.getOfferId());
 		
 	}
-//
-//	@Test
-//	void testGetAllOffers() {
-//		
-//	}
-//
-//	@Test
-//	void testGetAllOffersStringString() {
-//		
-//	}
+
+	@Test
+	void testGetAllOffers() {
+//		User user= new User("himanshu", "123456");
+//		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+//		Resource res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+//		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+//			List<Proposal> prop = new ArrayList<>();
+//			prop.add(p);
+//			Offer off = new Offer( true, LocalDate.now(), prop);
+//			em.persist(off);
+//			User user1= new User("himanshu2", "123456");
+//			emp = new Employee("Himanshu", "Tester", "Faridabad",user1);
+//			 res = new Resource("hiiii", "desc", "cat", LocalDate.now(), "type", 1000, emp);
+//			 p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+//			 List<Proposal> prop1 = new ArrayList<>();
+//				prop.add(p);
+//			Offer off1 = new Offer( true, LocalDate.now(), prop);
+//			em.persist(off1);
+			List<Offer> offList = oService.getAllOffers();
+			System.out.println(offList);
+			Assertions.assertEquals(offList.size(), 5);
+		
+	}
+
+	@Test
+	void testGetAllOffersStringString() {
+		User user= new User("himanshu", "123456");
+		Employee emp = new Employee("Himanshu", "Tester", "Faridabad",user);
+		Resource res = new Resource("hiiii", "desc", "category", LocalDate.now(), "type23", 1000, emp);
+		Proposal p = new Proposal("pg", 2000, LocalDate.now(), false, null, res);
+			List<Proposal> prop = new ArrayList<>();
+			prop.add(p);
+			
+			Offer off = new Offer( true, LocalDate.now(), prop);
+			em.persist(off);
+			List<Offer> offerfound = oService.getAllOffers("category", "type23");
+			System.out.println(offerfound);
+			Assertions.assertEquals(offerfound.size(), 1);
+		
+	}
 
 }

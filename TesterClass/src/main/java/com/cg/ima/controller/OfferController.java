@@ -55,43 +55,38 @@ public class OfferController {
 		Offer offer =oServive.addOffer(off);
 		System.out.println("req data = " +offer);
 		
-		return new ResponseEntity<Offer>(offer, HttpStatus.OK);
+		return new ResponseEntity<>(offer, HttpStatus.OK);
 	}
 	 @DeleteMapping("/delete/{id}")
 	 public ResponseEntity<Offer> removeOffer (@PathVariable("id") Integer id)  {
-		Offer off;
-		try {
-			off = oServive.removeOffer(id);
-			return new ResponseEntity<Offer>(off, HttpStatus.OK);
-		} catch (InvalidOfferException e) {
-			
-		}
-		return null;
+		Offer off = oServive.removeOffer(id);
+		return new ResponseEntity<>(off, HttpStatus.OK);
+		
 			
 		
 	 }
 	 	@GetMapping("/getall")
 	 	public ResponseEntity<List<Offer>> getAllOffer(){
 	 		List<Offer> offerList = oServive.getAllOffers();
-	 		return new ResponseEntity<List<Offer>>(offerList, HttpStatus.OK);
+	 		return new ResponseEntity<>(offerList, HttpStatus.OK);
 	 	}
 	 	@GetMapping("/getby/{cat}/{type}")
 	 	public ResponseEntity<List<Offer>> getAllOffers(@PathVariable("cat")String category, @PathVariable("type")String type){
 	 		List<Offer> offerList = oServive.getAllOffers(category, type);
-			return new ResponseEntity<List<Offer>>(offerList, HttpStatus.OK);
+			return new ResponseEntity<>(offerList, HttpStatus.OK);
 	 		
 	 	}
 	 	@GetMapping("/get/{id}")
 	 	public ResponseEntity<Offer> getOffer(@PathVariable("id")int offerId) throws InvalidOfferException {
 	 		Offer offer = oServive.getOffer(offerId);
-	 		return new ResponseEntity<Offer>(offer, HttpStatus.OK);
+	 		return new ResponseEntity<>(offer, HttpStatus.OK);
 	 	}
 	 	@PutMapping("/edit/{id}")
 	 	public ResponseEntity<Offer> editOffer(@PathVariable("id")int id, @RequestBody boolean bool) throws InvalidOfferException {
 	 		Offer offer = oServive.getOffer(id);
 	 		offer.setIsAvailable(bool);
 	 		Offer off=oServive.editOffer(offer);
-	 		return new ResponseEntity<Offer>(off, HttpStatus.OK);
+	 		return new ResponseEntity<>(off, HttpStatus.OK);
 	 		
 	 		
 	 	}

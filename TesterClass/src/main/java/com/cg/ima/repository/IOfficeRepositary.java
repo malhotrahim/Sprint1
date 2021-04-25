@@ -11,12 +11,17 @@ import com.cg.ima.entity.Offer;
 
 @Repository
 public interface IOfficeRepositary extends JpaRepository<Offer, Integer>{
-	@Query(value ="select	 \"OFFER\".\"IS_AVAILABLE\" as \"IS_AVAILABLE\",\r\n" + 
+	@Query(value ="select	 \"OFFER\".\"OFFER_ID\" as \"OFFER_ID\",\r\n" + 
 			"	 \"OFFER\".\"AVAILABLE_UPTO\" as \"AVAILABLE_UPTO\",\r\n" + 
-			"	 \"OFFER\".\"OFFER_ID\" as \"OFFER_ID\" \r\n" + 
-			" from	 \"RES_TEST\" \"RES_TEST\",\r\n" + 
-			"	 \"OFFER\" \"OFFER\" \r\n" + 
-			" where 	 \"RES_TEST\".\"CATEGORY\" =:cat \r\n" + 
+			"	 \"OFFER\".\"IS_AVAILABLE\" as \"IS_AVAILABLE\",\r\n" + 
+			"	 \"PROPOSAL\".\"RESID\" as \"RESID\",\r\n" + 
+			"	 \"PROPOSAL\".\"OFFERID\" as \"OFFERID\" \r\n" + 
+			" from	 \"PROPOSAL\" \"PROPOSAL\",\r\n" + 
+			"	 \"OFFER\" \"OFFER\",\r\n" + 
+			"	 \"RES_TEST\" \"RES_TEST\" \r\n" + 
+			" where   \"PROPOSAL\".\"OFFERID\"=\"OFFER\".\"OFFER_ID\"\r\n" + 
+			" and	 \"RES_TEST\".\"RES_ID\"=\"PROPOSAL\".\"RESID\"\r\n" + 
+			"  and 	 \"RES_TEST\".\"CATEGORY\" =:cat \r\n" + 
 			"   and	 \"RES_TEST\".\"TYPE\" =:type", nativeQuery = true)
 	List<Offer> findBy(@Param("cat") String category, @Param("type") String type);
 	

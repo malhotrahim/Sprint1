@@ -31,10 +31,11 @@ public class Employee {
 	public Employee() {
 		super();
 	}
+	
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
-				+ "]";
+				+ ", user=" + user + "]";
 	}
 	public Employee(String empName, String deptName, String location,User user) {
 		super();
