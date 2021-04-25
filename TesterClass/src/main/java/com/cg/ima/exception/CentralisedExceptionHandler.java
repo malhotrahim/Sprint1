@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class CentralisedExceptionHandler {
 	@ResponseStatus(code = HttpStatus.NOT_FOUND)
-	@ExceptionHandler(InvalidOfferException.class)
-	public String handlesInvalidOffer(InvalidOfferException e) {
+	@ExceptionHandler(InvalidRequirementException.class)
+	public String handlesInvalidRequirement(InvalidRequirementException e) {
 		return e.getMessage();
 	}
-
 }
