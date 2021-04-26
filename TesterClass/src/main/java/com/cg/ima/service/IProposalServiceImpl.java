@@ -16,7 +16,7 @@ import com.cg.ima.repository.IProposalRepository;
 public class IProposalServiceImpl implements IProposalService {
 	@Autowired
 	private IProposalRepository pRepo;
-	
+
 	@Override
 	public Proposal addProposal(Proposal proposal) {
 		Proposal prop = pRepo.save(proposal);
@@ -24,13 +24,13 @@ public class IProposalServiceImpl implements IProposalService {
 	}
 
 	@Override
-	public Proposal editProposal(Proposal proposal) throws InvalidProposalException{
+	public Proposal editProposal(Proposal proposal) throws InvalidProposalException {
 		int propId = proposal.getPropId();
 		Optional<Proposal> opt = pRepo.findById(propId);
-		if(!opt.isPresent()) {
+		if (!opt.isPresent()) {
 			throw new InvalidProposalException("Proposal not found for id: " + propId);
 		}
-		Proposal prop =opt.get();
+		Proposal prop = opt.get();
 		prop.setAmount(prop.getAmount());
 		return prop;
 	}
@@ -38,7 +38,7 @@ public class IProposalServiceImpl implements IProposalService {
 	@Override
 	public Proposal getProposal(int propId) throws InvalidProposalException {
 		Optional<Proposal> opt = pRepo.findById(propId);
-		if(!opt.isPresent()) {
+		if (!opt.isPresent()) {
 			throw new InvalidProposalException("Proposal not found for id: " + propId);
 		}
 		Proposal prop = opt.get();
@@ -48,7 +48,7 @@ public class IProposalServiceImpl implements IProposalService {
 	@Override
 	public Proposal removeProposal(int propId) throws InvalidProposalException {
 		Optional<Proposal> opt = pRepo.findById(propId);
-		if(!opt.isPresent()) {
+		if (!opt.isPresent()) {
 			throw new InvalidProposalException("Proposal not found for id: " + propId);
 		}
 		Proposal prop = opt.get();

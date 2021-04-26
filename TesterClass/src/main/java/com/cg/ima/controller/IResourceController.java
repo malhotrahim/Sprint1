@@ -1,4 +1,4 @@
-package com.cg.ima.ctrl;
+package com.cg.ima.controller;
 
 import java.util.List;
 
@@ -19,20 +19,21 @@ import com.cg.ima.service.IResourceService;
 @RequestMapping("/resource")
 @Validated
 public class IResourceController {
-	
+
 	@Autowired
 	private IResourceService resourceService;
-	
+
 	@GetMapping("/by/empid/{empid}")
-	public List<Resource> findByEmpId(@PathVariable("empid") @Valid int empId) throws InvalidEmployeeException{
-		List<Resource> list= resourceService.getAllResources(empId);
+	public List<Resource> findByEmpId(@PathVariable("empid") @Valid int empId) throws InvalidEmployeeException {
+		List<Resource> list = resourceService.getAllResources(empId);
 		return list;
 	}
+
 	@GetMapping("/by/category/type/{category}/{type}")
 	public List<Resource> findAll(@PathVariable("category") @Valid String category,
-			@PathVariable("type") @Valid String type){
+			@PathVariable("type") @Valid String type) {
 		List<Resource> list = resourceService.getAllResources(category, type);
-		return list; 
+		return list;
 	}
 
 }

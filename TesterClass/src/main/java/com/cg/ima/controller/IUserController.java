@@ -1,4 +1,4 @@
-package com.cg.ima.ctrl;
+package com.cg.ima.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,75 +28,72 @@ import com.cg.ima.service.IUserService;
 @Validated
 public class IUserController {
 	private Logger logger = LoggerFactory.getLogger(IUserController.class);
-	
+
 	@Autowired
 	private IUserService userService;
-	
+
 	@PostMapping("/login")
-	public User createSession(@RequestBody @Valid User user,@Param("note") @Valid String note, HttpServletRequest request) {
-		User loginUser=userService.login(user);
-		if(loginUser==null) {
+	public User createSession(@RequestBody @Valid User user, @Param("note") @Valid String note,
+			HttpServletRequest request) {
+		User loginUser = userService.login(user);
+		if (loginUser == null) {
 			logger.debug("Sorry! userId or password is incorrect");
 		}
-		List<String> notes = 
-				(List<String>) request.getSession().getAttribute("NOTES_SESSION");
-		if(notes==null) {
+		List<String> notes = (List<String>) request.getSession().getAttribute("NOTES_SESSION");
+		if (notes == null) {
 			notes = new ArrayList<>();
 		}
 		notes.add(note);
-		System.out.println("notes= "+notes);
+		System.out.println("notes= " + notes);
 		request.getSession().setAttribute("NOTES_SESSION", notes);
 		return loginUser;
 	}
-	
+
 	@PostMapping("/invalidate/session")
 	public String destroySession(HttpServletRequest request) {
-		User logoutUser=userService.logout();
-		if(logoutUser==null) {
+		User logoutUser = userService.logout();
+		if (logoutUser == null) {
 			return "Not Loggedin";
 		}
 		logger.debug("Invalidating session");
 		request.getSession().invalidate();
 		return "Session invalidated";
 	}
-	
+
 	@PostMapping("/userAdd")
-	public User addsUser(@RequestBody @Valid User user){
-		User addedUser=userService.addUser(user);
-		if(addedUser==null) {
+	public User addsUser(@RequestBody @Valid User user) {
+		User addedUser = userService.addUser(user);
+		if (addedUser == null) {
 			logger.debug("User cannot be added");
 		}
 		return addedUser;
 	}
-	
+
 	@PutMapping("/userUpdate")
-	public User updateUser(@RequestBody @Valid User user ){
-		User updatedUser=userService.editUser(user);
-		if(updatedUser==null) {
+	public User updateUser(@RequestBody @Valid User user) {
+		User updatedUser = userService.editUser(user);
+		if (updatedUser == null) {
 			logger.debug("User cannot be updated");
 		}
 		return updatedUser;
 	}
-	
+
 	@DeleteMapping("/userDelete/{userId}")
-	public User deleteUser(@PathVariable("userId") @Valid String userId){
-		User deletedUser=null;
-		deletedUser=userService.removeUser(userId);
-		if(deletedUser==null) {
+	public User deleteUser(@PathVariable("userId") @Valid String userId) {
+		User deletedUser = null;
+		deletedUser = userService.removeUser(userId);
+		if (deletedUser == null) {
 			logger.debug("User cannot be deleted");
 		}
 		return deletedUser;
 	}
-	
 
 	@GetMapping("/getsessions")
-	public List<String> getSessions(HttpServletRequest request){
-		List<String> sessions = 
-				(List<String>) request.getSession().getAttribute("NOTES_SESSION");
-		System.out.println("Session ID: "+request.getSession().getId());
+	public List<String> getSessions(HttpServletRequest request) {
+		List<String> sessions = (List<String>) request.getSession().getAttribute("NOTES_SESSION");
+		System.out.println("Session ID: " + request.getSession().getId());
 		System.out.println("getting sessions: " + sessions);
 		return sessions;
 	}
-
 
 }

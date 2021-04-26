@@ -28,12 +28,12 @@ public class IRequirementServiceImpl implements IRequirementService {
 	@Override
 	public Requirement editRequirement(Requirement requirement) {
 		Optional<Requirement> opt = rDao.findById(requirement.getReqId());
-		if(!opt.isPresent()) {
-			throw new InvalidRequirementException("Requirement not found for id= "+ requirement.getReqId());
+		if (!opt.isPresent()) {
+			throw new InvalidRequirementException("Requirement not found for id= " + requirement.getReqId());
 		}
 		Requirement req = opt.get();
-		req.setFulfilled(requirement.getisFulfilled());
-		
+		req.setIsFulfilled(requirement.getIsFulfilled());
+
 		return req;
 	}
 
@@ -41,8 +41,8 @@ public class IRequirementServiceImpl implements IRequirementService {
 	public Requirement getRequirement(int requirementId) throws InvalidRequirementException {
 		Optional<Requirement> opt = rDao.findById(requirementId);
 		if (!opt.isPresent()) {
-			throw new InvalidRequirementException("Requirement not found for id ="+ requirementId);
-			}
+			throw new InvalidRequirementException("Requirement not found for id =" + requirementId);
+		}
 		Requirement requirement = opt.get();
 		return requirement;
 
@@ -65,15 +65,11 @@ public class IRequirementServiceImpl implements IRequirementService {
 	@Override
 	public List<Requirement> getAllRequirements(String category, String type) {
 		List<Requirement> requirementList = rDao.findBy(category, type);
-		if(requirementList.isEmpty()) {
-			throw new InvalidRequirementException("No requirement found for category ="+ category + "and type = "+type);
+		if (requirementList.isEmpty()) {
+			throw new InvalidRequirementException(
+					"No requirement found for category =" + category + "and type = " + type);
 		}
 		return requirementList;
 	}
-
-	
-
-
-	
 
 }

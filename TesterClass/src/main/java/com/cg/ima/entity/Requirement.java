@@ -48,12 +48,7 @@ public class Requirement  {
 	public void setReqId(int reqId) {
 		this.reqId = reqId;
 	}
-	public boolean isFulfilled() {
-		return isFulfilled;
-	}
-	public void setFulfilled(boolean isFulfilled) {
-		this.isFulfilled = isFulfilled;
-	}
+	
 	public LocalDate getFulfilledOn() {
 		return fulfilledOn;
 	}
@@ -65,6 +60,13 @@ public class Requirement  {
 	}
 	public void setProposals(List<Proposal> proposals) {
 		this.proposals = proposals;
+	}
+	public boolean getIsFulfilled() {
+
+		return this.isFulfilled;
+	}
+	public void setIsFulfilled(boolean isFulfilled) {
+		this.isFulfilled = isFulfilled;
 	}
 	
 	

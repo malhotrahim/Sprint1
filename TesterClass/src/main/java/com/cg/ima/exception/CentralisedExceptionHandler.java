@@ -12,4 +12,19 @@ public class CentralisedExceptionHandler {
 	public String handlesInvalidRequirement(InvalidRequirementException e) {
 		return e.getMessage();
 	}
+
+	@ExceptionHandler(InvalidRequirementException.class)
+	public String handlesInvalidRequirement(InvalidOfferException e) {
+		return e.getMessage();
+	}
+
+	@ExceptionHandler(InvalidRequirementException.class)
+	public String handlesInvalidRequirement(InvalidEmployeeException e) {
+		return e.getMessage();
+	}
+
+	@ExceptionHandler(InvalidRequirementException.class)
+	public String handlesInvalidRequirement(InvalidProposalException e) {
+		return e.getMessage();
+	}
 }

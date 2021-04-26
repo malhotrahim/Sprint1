@@ -17,7 +17,7 @@ import com.cg.ima.repository.IResourceRepository;
 @Transactional
 public class IResourceServiceImpl implements IResourceService {
 	private Logger logger = LoggerFactory.getLogger(IResourceServiceImpl.class);
-	
+
 	@Autowired
 	private IResourceRepository resourceDao;
 
@@ -26,8 +26,8 @@ public class IResourceServiceImpl implements IResourceService {
 	 */
 	@Override
 	public List<Resource> getAllResources(String category, String type) {
-		List<Resource> getAll = resourceDao.findByCategoryAndType(category,type);
-		logger.info("Resources fetched by category: "+category+" and type: "+type);
+		List<Resource> getAll = resourceDao.findByCategoryAndType(category, type);
+		logger.info("Resources fetched by category: " + category + " and type: " + type);
 		return getAll;
 	}
 
@@ -35,9 +35,9 @@ public class IResourceServiceImpl implements IResourceService {
 	 * This function is used to get all resources based on employee id
 	 */
 	@Override
-	public List<Resource> getAllResources(int empId) throws InvalidEmployeeException{
-		List<Resource> res1=resourceDao.getByEmpId(empId);
-		logger.info("Resources fetched by employee id: "+empId);
+	public List<Resource> getAllResources(int empId) throws InvalidEmployeeException {
+		List<Resource> res1 = resourceDao.getByEmpId(empId);
+		logger.info("Resources fetched by employee id: " + empId);
 		return res1;
 	}
 

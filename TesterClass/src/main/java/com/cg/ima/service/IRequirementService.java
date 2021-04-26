@@ -10,38 +10,43 @@ public interface IRequirementService {
 	 * @param requirement
 	 * @return Requirement
 	 */
-	
-   Requirement addRequirement(Requirement requirement);
-   /**
+
+	Requirement addRequirement(Requirement requirement);
+
+	/**
 	 * @author Faleen
 	 * @param requirement
 	 * @return Requirement
 	 */
-	
+
 	Requirement editRequirement(Requirement requirement);
+
 	/**
 	 * @author Faleen
 	 * @param requirement
-	 * @return Requirement
-	 * *@throws InvalidRequirementException
+	 * @return Requirement *@throws InvalidRequirementException
 	 */
-	
-	Requirement getRequirement(int requirementId) throws InvalidRequirementException ;
+
+	Requirement getRequirement(int requirementId) throws InvalidRequirementException;
+
 	/**
 	 * @author Faleen
 	 * @param requirement
-	 * @return Requirement
-	 * *@throws InvalidRequirementException
+	 * @return Requirement *@throws InvalidRequirementException
 	 */
-	
-	Requirement removeRequirement(int requirementId) throws InvalidRequirementException  ;
+
+	Requirement removeRequirement(int requirementId) throws InvalidRequirementException;
+
 	/**
 	 * author Faleen
+	 * 
 	 * @return List
 	 */
 	List<Requirement> getAllRequirements();
+
 	/**
 	 * author Faleen
+	 * 
 	 * @return List
 	 */
 

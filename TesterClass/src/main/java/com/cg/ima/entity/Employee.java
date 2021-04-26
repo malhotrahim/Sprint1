@@ -10,12 +10,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+
 @Entity
 @Table(name = "emp_test")
 public class Employee {
 	@Id
-	@SequenceGenerator(name="emp22", initialValue = 50001, allocationSize=1)
-	@GeneratedValue(strategy = GenerationType.SEQUENCE , generator = "emp22")
+	@SequenceGenerator(name = "emp22", initialValue = 50001, allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "emp22")
 	private int empId;
 	private String empName;
 	private String deptName;
@@ -24,50 +25,61 @@ public class Employee {
 	@JoinColumn(name = "userid")
 	@NotNull
 	private User user;
-	
+
 	public int getEmpId() {
 		return empId;
 	}
+
 	public Employee() {
 		super();
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Employee [empId=" + empId + ", empName=" + empName + ", deptName=" + deptName + ", location=" + location
 				+ ", user=" + user + "]";
 	}
-	public Employee(String empName, String deptName, String location,User user) {
+
+	public Employee(String empName, String deptName, String location, User user) {
 		super();
 		this.empName = empName;
 		this.deptName = deptName;
 		this.location = location;
-		this.user=user;
+		this.user = user;
 	}
+
 	public void setEmpId(int empId) {
 		this.empId = empId;
 	}
+
 	public String getEmpName() {
 		return empName;
 	}
+
 	public void setEmpName(String empName) {
 		this.empName = empName;
 	}
+
 	public String getDeptName() {
 		return deptName;
 	}
+
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
+
 	public String getLocation() {
 		return location;
 	}
+
 	public void setLocation(String location) {
 		this.location = location;
 	}
+
 	public User getSuser() {
 		return user;
 	}
+
 	public void setSuser(User suser) {
 		this.user = suser;
 	}

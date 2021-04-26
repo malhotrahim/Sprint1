@@ -14,9 +14,9 @@ import com.cg.ima.repository.IUserRepository;
 @Transactional
 public class IUserServiceImpl implements IUserService {
 	private Logger logger = LoggerFactory.getLogger(IUserServiceImpl.class);
-	
-	static String userid=""; 
-	
+
+	static String userid = "";
+
 	@Autowired
 	private IUserRepository userDao;
 
@@ -25,10 +25,10 @@ public class IUserServiceImpl implements IUserService {
 	 */
 	@Override
 	public User login(User user) {
-		User user1=userDao.findByUser(user.getUserId(),user.getPassword());
-		userid=user1.getUserId();
-		if(user1!=null)
-			logger.info(user.getUserId()+"loggedin");
+		User user1 = userDao.findByUser(user.getUserId(), user.getPassword());
+		userid = user1.getUserId();
+		if (user1 != null)
+			logger.info(user.getUserId() + "loggedin");
 		return user1;
 	}
 
@@ -37,10 +37,10 @@ public class IUserServiceImpl implements IUserService {
 	 */
 	@Override
 	public User logout() {
-		if(userid!=null)
-			logger.info(userid+"loggedout");
-		User user2=userDao.findByUserId(userid);
-		userid="";
+		if (userid != null)
+			logger.info(userid + "loggedout");
+		User user2 = userDao.findByUserId(userid);
+		userid = "";
 		return user2;
 	}
 
@@ -49,8 +49,8 @@ public class IUserServiceImpl implements IUserService {
 	 */
 	@Override
 	public User addUser(User user) {
-		User user1=userDao.save(user);
-		logger.info("User added"+user1);
+		User user1 = userDao.save(user);
+		logger.info("User added" + user1);
 		return user1;
 	}
 
@@ -59,21 +59,20 @@ public class IUserServiceImpl implements IUserService {
 	 */
 	@Override
 	public User editUser(User user) {
-		User user1=userDao.findByUserId(user.getUserId());
+		User user1 = userDao.findByUserId(user.getUserId());
 		user1.setPassword(user.getPassword());
-		logger.info("User updated"+user1);
+		logger.info("User updated" + user1);
 		return user1;
 	}
-	
 
 	/**
 	 * This function is used to delete a user
 	 */
 	@Override
 	public User removeUser(String userId) {
-		User user1=userDao.findByUserId(userId);
+		User user1 = userDao.findByUserId(userId);
 		userDao.deleteByUserId(userId);
-		logger.info("User deleted"+user1);
+		logger.info("User deleted" + user1);
 		return user1;
 
 	}

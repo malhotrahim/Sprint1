@@ -31,14 +31,14 @@ class employeeTest {
 
 	@Autowired
 	private IEmployeeService eService;
-	
+
 	@Autowired
 	private EntityManager em;
-	
+
 	@Test
 	void testAddEmployee() {
-		User user = new User("Anmol","Anmol2099");
-		Employee emp = new Employee("Anmol","HR","Bangalore", user);
+		User user = new User("Anmol", "Anmol2099");
+		Employee emp = new Employee("Anmol", "HR", "Bangalore", user);
 		em.persist(emp);
 		Employee emp1 = eService.addEmployee(emp);
 		Assertions.assertEquals(emp1.getEmpName(), emp.getEmpName());
@@ -46,21 +46,21 @@ class employeeTest {
 
 	@Test
 	void testEditEmployee() {
-		User user = new User("Anmol","Anmol2099");
-		
-		Employee emp1 = new Employee("Anmol","Manager","Bangalore", user);
+		User user = new User("Anmol", "Anmol2099");
+
+		Employee emp1 = new Employee("Anmol", "Manager", "Bangalore", user);
 		em.persist(emp1);
-		Employee emp = new Employee("Anmol","HR","Bangalore", user);
+		Employee emp = new Employee("Anmol", "HR", "Bangalore", user);
 		emp.setEmpId(emp1.getEmpId());
 		Employee empEdit = eService.editEmployee(emp);
 		System.out.println(empEdit);
-		Assertions.assertEquals(empEdit.getDeptName(),"HR");
+		Assertions.assertEquals(empEdit.getDeptName(), "HR");
 	}
 
 	@Test
 	void testGetEmployee() throws InvalidEmployeeException {
-		User user = new User("Anmol","Anmol2099");
-		Employee emp = new Employee("Anmol","HR","Bangalore", user);
+		User user = new User("Anmol", "Anmol2099");
+		Employee emp = new Employee("Anmol", "HR", "Bangalore", user);
 		em.persist(emp);
 		Integer id = emp.getEmpId();
 		Employee empFound = eService.getEmployee(id);
@@ -69,7 +69,7 @@ class employeeTest {
 
 	@Test
 	void testUpdateIsAvailable() {
-		Offer of = new Offer(false,null,null);
+		Offer of = new Offer(false, null, null);
 		em.persist(of);
 		Assertions.assertEquals(of.getIsAvailable(), false);
 	}
@@ -77,23 +77,23 @@ class employeeTest {
 	@Test
 	void testUpdateIsFulfilled() {
 
-		Requirement	 req = new Requirement(false,null,null);
+		Requirement req = new Requirement(false, null, null);
 		em.persist(req);
-		Assertions.assertEquals(req.isFulfilled(), false);
+		Assertions.assertEquals(req.getIsFulfilled(), false);
 	}
 
 	@Test
 	void testUpdateIsAccepted() {
 		Resource res = new Resource("anm ", "skdhb", "Service", null, "kjdv", 3400, null);
-		Proposal pro = new Proposal("ABC",25000,null,false,null,res);
+		Proposal pro = new Proposal("ABC", 25000, null, false, null, res);
 		em.persist(pro);
-		Assertions.assertEquals(pro.isAccepted(), false);
+		Assertions.assertEquals(pro.getIsAccepted(), false);
 	}
 
 	@Test
 	void testGetAllOffers() throws InvalidEmployeeException {
-		User user = new User("Anmol","Anmol2099");
-		Employee emp = new Employee("Anmol","HR","Bangalore", user);
+		User user = new User("Anmol", "Anmol2099");
+		Employee emp = new Employee("Anmol", "HR", "Bangalore", user);
 		em.persist(emp);
 		List<Offer> list = eService.getAllOffers(emp.getEmpId());
 		Assertions.assertEquals(list.size(), 0);
@@ -101,8 +101,8 @@ class employeeTest {
 
 	@Test
 	void testGetAllRequirements() throws InvalidEmployeeException {
-		User user = new User("Anmol","Anmol2099");
-		Employee emp = new Employee("Anmol","HR","Bangalore", user);
+		User user = new User("Anmol", "Anmol2099");
+		Employee emp = new Employee("Anmol", "HR", "Bangalore", user);
 		em.persist(emp);
 		List<Requirement> list = eService.getAllRequirements(emp.getEmpId());
 		Assertions.assertEquals(list.size(), 0);

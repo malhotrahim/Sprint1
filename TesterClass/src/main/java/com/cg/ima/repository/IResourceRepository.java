@@ -11,10 +11,9 @@ import com.cg.ima.entity.Resource;
 
 @Repository
 public interface IResourceRepository extends JpaRepository<Resource, Integer> {
-	
 
 	@Query("from Resource where category=:category and type=:type")
-	List<Resource> findByCategoryAndType(@Param("category") String category,@Param("type") String type);
+	List<Resource> findByCategoryAndType(@Param("category") String category, @Param("type") String type);
 
 	@Query("from Resource where empId=:empid")
 	List<Resource> getByEmpId(@Param("empid") int empId);

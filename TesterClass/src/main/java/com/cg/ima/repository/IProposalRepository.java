@@ -9,6 +9,6 @@ import com.cg.ima.entity.Proposal;
 import com.cg.ima.exception.InvalidProposalException;
 
 @Repository
-public interface IProposalRepository extends JpaRepository<Proposal, Integer>{
+public interface IProposalRepository extends JpaRepository<Proposal, Integer> {
 
 }

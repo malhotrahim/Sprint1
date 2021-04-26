@@ -15,7 +15,6 @@ public interface IUserRepository extends JpaRepository<User, Integer> {
 	void deleteByUserId(String userId);
 
 	@Query("from User where userId=:userid and password=:pswrd")
-	User findByUser(@Param("userid") String userId,@Param("pswrd") String password);
-
+	User findByUser(@Param("userid") String userId, @Param("pswrd") String password);
 
 }

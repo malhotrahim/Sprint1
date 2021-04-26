@@ -1,4 +1,4 @@
-package com.cg.ima.ctrl;
+package com.cg.ima.controller;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -45,29 +45,23 @@ public class IRequirementController {
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@PostMapping("/add")
 	public ResponseEntity<Requirement> addRequirement(@RequestBody Requirement req) {
-//		User user= new User("Faleen", "12345");
-//	  Employee emp = new Employee("Faleen","Developer","Srinagar",user);
-//		Resource res = new Resource("hello", "inc", "cat", LocalDate.now(), "type", 1000, emp);
-//	  Proposal p = new Proposal("proposal", 2000, LocalDate.now(), false, null, res);
-//		List<Proposal> prop = new ArrayList<>();
-//		prop.add(p);
-//
-//		Requirement req1 = new Requirement(true, LocalDate.now(), prop);
-		System.out.println("req data = "  +req);
+
+		System.out.println("req data = " + req);
 		Requirement requirement = rService.addRequirement(req);
-		System.out.println("req data = " +requirement);
-		
+		System.out.println("req data = " + requirement);
+
 		return new ResponseEntity<Requirement>(requirement, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Requirement>removeRequirement(@PathVariable("id") Integer id) {
+	public ResponseEntity<Requirement> removeRequirement(@PathVariable("id") Integer id) {
 		Requirement req;
-		try{
+		try {
 			Requirement requirement = rService.removeRequirement(id);
-		return  new ResponseEntity<Requirement>(requirement, HttpStatus.OK);
-		}catch(InvalidRequirementException e) {
-	}return null;
+			return new ResponseEntity<Requirement>(requirement, HttpStatus.OK);
+		} catch (InvalidRequirementException e) {
+		}
+		return null;
 	}
 
 	@GetMapping("/getall")
@@ -85,16 +79,18 @@ public class IRequirementController {
 	}
 
 	@GetMapping("/get/{id}")
-	public ResponseEntity<Requirement>getRequirement(@PathVariable("id") int reqId) throws InvalidRequirementException {
+	public ResponseEntity<Requirement> getRequirement(@PathVariable("id") int reqId)
+			throws InvalidRequirementException {
 		Requirement requirement = rService.getRequirement(reqId);
 		return new ResponseEntity<Requirement>(requirement, HttpStatus.OK);
 	}
 
 	@PutMapping("/edit/{id}")
-	public ResponseEntity<Requirement>editRequirement(@PathVariable("id") int id, @RequestBody boolean bool) throws InvalidRequirementException {
+	public ResponseEntity<Requirement> editRequirement(@PathVariable("id") int id, @RequestBody boolean bool)
+			throws InvalidRequirementException {
 		Requirement requirement = rService.getRequirement(id);
-		requirement.setFulfilled(bool);
-		Requirement req=rService.editRequirement(requirement);
-		return  new ResponseEntity<Requirement>(req, HttpStatus.OK);
+		requirement.setIsFulfilled(bool);
+		Requirement req = rService.editRequirement(requirement);
+		return new ResponseEntity<Requirement>(req, HttpStatus.OK);
 	}
 }

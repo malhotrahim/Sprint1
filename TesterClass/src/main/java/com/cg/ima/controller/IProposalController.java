@@ -38,7 +38,7 @@ public class IProposalController {
 		}
 		return new ResponseEntity<Proposal>(addedProp, HttpStatus.OK);
 	}
-	
+
 	@PutMapping("/edit/{propid}")
 	public ResponseEntity<Proposal> editProposal(@RequestBody Proposal prop) throws InvalidProposalException {
 		Proposal updatedProp = pService.editProposal(prop);
@@ -47,9 +47,10 @@ public class IProposalController {
 		}
 		return new ResponseEntity<Proposal>(updatedProp, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/find/{propid}")
-	public ResponseEntity<Proposal> findProposal(@PathVariable("propid") Integer propId) throws InvalidProposalException {
+	public ResponseEntity<Proposal> findProposal(@PathVariable("propid") Integer propId)
+			throws InvalidProposalException {
 		Proposal prop = pService.getProposal(propId);
 		if (prop == null) {
 			return new ResponseEntity("Sorry! Proposal Not Found for " + propId, HttpStatus.NOT_FOUND);
@@ -58,14 +59,15 @@ public class IProposalController {
 	}
 
 	@DeleteMapping("/remove/{propid}")
-	public ResponseEntity<Proposal> deleteProposal(@PathVariable("propid") Integer propId) throws InvalidProposalException {
+	public ResponseEntity<Proposal> deleteProposal(@PathVariable("propid") Integer propId)
+			throws InvalidProposalException {
 		Proposal deletedProp = pService.removeProposal(propId);
 		if (deletedProp == null) {
 			return new ResponseEntity("Sorry! Could not Delete Proposal ", HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<Proposal>(deletedProp, HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/getAll")
 	public ResponseEntity<List<Proposal>> getAllProposals() {
 		List<Proposal> proposals = pService.getAllProposals();

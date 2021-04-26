@@ -29,16 +29,16 @@ class ProposalTest {
 
 	@Autowired
 	private IProposalService eService;
-	
+
 	@Autowired
 	private EntityManager em;
-	
+
 	@Test
 	void testAddProposal() {
-		User user = new User("ABNM","ANMASF20349");
-		Employee emp = new Employee("ABC","HR","Bangalore",user);
+		User user = new User("ABNM", "ANMASF20349");
+		Employee emp = new Employee("ABC", "HR", "Bangalore", user);
 		Resource res = new Resource("anm ", "skdhb", "Service", null, "kjdv", 3400, null);
-		Proposal pro = new Proposal("Abc",25000,null,false,null,res);
+		Proposal pro = new Proposal("Abc", 25000, null, false, null, res);
 		em.persist(pro);
 		Proposal addPro = eService.addProposal(pro);
 		Assertions.assertEquals(addPro.getPropId(), pro.getPropId());
@@ -46,12 +46,12 @@ class ProposalTest {
 
 	@Test
 	void testEditProposal() throws InvalidProposalException {
-		User user = new User("ABNM","ANMASF20349");
-		Employee emp = new Employee("ABC","HR","Bangalore",user);
+		User user = new User("ABNM", "ANMASF20349");
+		Employee emp = new Employee("ABC", "HR", "Bangalore", user);
 		Resource res = new Resource("anm ", "skdhb", "Service", null, "kjdv", 3400, null);
-		Proposal pro = new Proposal("Abc",35000,null,false,null,res);
+		Proposal pro = new Proposal("Abc", 35000, null, false, null, res);
 		em.persist(pro);
-		Proposal pro1 = new Proposal("Abc",25000,null,false,null,res);
+		Proposal pro1 = new Proposal("Abc", 25000, null, false, null, res);
 		pro1.setPropId(pro.getPropId());
 		Proposal editPro = eService.editProposal(pro);
 		Assertions.assertEquals(editPro.getAmount(), 35000);
@@ -59,10 +59,10 @@ class ProposalTest {
 
 	@Test
 	void testGetProposal() throws InvalidProposalException {
-		User user = new User("ABNM","ANMASF20349");
-		Employee emp = new Employee("ABC","HR","Bangalore",user);
+		User user = new User("ABNM", "ANMASF20349");
+		Employee emp = new Employee("ABC", "HR", "Bangalore", user);
 		Resource res = new Resource("anm ", "skdhb", "Service", null, "kjdv", 3400, null);
-		Proposal pro = new Proposal("Abc",25000,null,false,null,res);
+		Proposal pro = new Proposal("Abc", 25000, null, false, null, res);
 		em.persist(pro);
 		Integer id = pro.getPropId();
 		Proposal proFound = eService.getProposal(id);
@@ -71,25 +71,25 @@ class ProposalTest {
 
 	@Test
 	void testRemoveProposal() throws InvalidProposalException {
-		User user = new User("ABNM","ANMASF20349");
-		Employee emp = new Employee("ABC","HR","Bangalore",user);
+		User user = new User("ABNM", "ANMASF20349");
+		Employee emp = new Employee("ABC", "HR", "Bangalore", user);
 		Resource res = new Resource("anm ", "skdhb", "Service", null, "kjdv", 3400, null);
-		Proposal pro1 = new Proposal("Abc",25000,null,false,null,res);
+		Proposal pro1 = new Proposal("Abc", 25000, null, false, null, res);
 		em.persist(pro1);
-		Integer id = pro1.getPropId();	
+		Integer id = pro1.getPropId();
 		Proposal prodel = eService.removeProposal(id);
-		Assertions.assertEquals(prodel.getPropId(),pro1.getPropId());
+		Assertions.assertEquals(prodel.getPropId(), pro1.getPropId());
 	}
 
 	@Test
 	void testGetAllProposals() {
-		User user = new User("ABNM","ANMASF20349");
-		Employee emp = new Employee("ABC","HR","Bangalore",user);
+		User user = new User("ABNM", "ANMASF20349");
+		Employee emp = new Employee("ABC", "HR", "Bangalore", user);
 		Resource res = new Resource("anm ", "skdhb", "Service", null, "kjdv", 3400, null);
-		Proposal pro1 = new Proposal("Abc",25000,null,false,null,res);
+		Proposal pro1 = new Proposal("Abc", 25000, null, false, null, res);
 		em.persist(pro1);
 		List<Proposal> List = eService.getAllProposals();
-		Assertions.assertEquals(List.size(),2);
+		Assertions.assertEquals(List.size(), 2);
 	}
 
 }
